@@ -1,7 +1,7 @@
 const dotenv = require('dotenv')
 
 const configureMW = require('./mw')
-const { analyseGrid } = require('./puzzle')
+const { analyseGrid, renderGrid } = require('./puzzle')
 const SAMPLE_PUZZLE = require('./sample-puzzle')
 
 dotenv.config()
@@ -11,6 +11,11 @@ const MW = configureMW(MW_DICTIONARY_KEY, MW_THESAURUS_KEY)
 
 const main = async () => {
   const gridAnalysis = analyseGrid(SAMPLE_PUZZLE.GRID)
+  renderGrid(
+    SAMPLE_PUZZLE.GRID,
+    SAMPLE_PUZZLE.ACROSS_ANSWERS,
+    SAMPLE_PUZZLE.DOWN_ANSWERS,
+    gridAnalysis)
   const acrossCluesDetails = gridAnalysis.across.map((clueDetails, index) => ({
     ...clueDetails,
     clue: SAMPLE_PUZZLE.ACROSS_CLUES[index],

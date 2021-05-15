@@ -67,7 +67,34 @@ const analyseGrid = grid => {
   }
 }
 
-const renderGrid = (grid, clueDetails, answers) => {
+const renderGrid = (grid, acrossAnswers, downAnswers, gridAnalysis) => {
+  const gridSquareCharacters = grid.map(row =>
+    Array.from(row).map(ch =>
+      ch !== '.' ? '\u2591' : ' '))
+
+  if (acrossAnswers && downAnswers && gridAnalysis) {
+    gridAnalysis.across.forEach((clueDetails, clueIndex) => {
+      const answer = acrossAnswers[clueIndex]
+      if (answer) {
+        const answerCharacters = Array.from(answer)
+        clueDetails.gridSquares.forEach(({ row, col }, index) => {
+          gridSquareCharacters[row][col] = answerCharacters[index].toUpperCase()
+        })
+      }
+    })
+
+    gridAnalysis.down.forEach((clueDetails, clueIndex) => {
+      const answer = downAnswers[clueIndex]
+      if (answer) {
+        const answerCharacters = Array.from(answer)
+        clueDetails.gridSquares.forEach(({ row, col }, index) => {
+          gridSquareCharacters[row][col] = answerCharacters[index].toUpperCase()
+        })
+      }
+    })
+  }
+
+  gridSquareCharacters.forEach(row => console.log(row.join('')))
 }
 
 module.exports = {
