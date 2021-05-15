@@ -1,0 +1,12 @@
+{
+  "name": "quick-crossword-puzzle",
+  "version": "0.0.1",
+  "description": "Try to automatically solve a quick crossword puzzle",
+  "main": "index.js",
+  "author": "Jonathan Taylor",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^9.0.2"
+  }
+}

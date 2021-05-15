@@ -1,0 +1,363 @@
+{
+  "id": "flushed",
+  "metadata": {
+    "operation": "retrieve",
+    "provider": "Oxford University Press",
+    "schema": "Thesaurus"
+  },
+  "results": [
+    {
+      "id": "flushed",
+      "language": "en-gb",
+      "lexicalEntries": [
+        {
+          "entries": [
+            {
+              "senses": [
+                {
+                  "antonyms": [
+                    {
+                      "language": "en",
+                      "text": "pale"
+                    }
+                  ],
+                  "examples": [
+                    {
+                      "text": "the children's happy, flushed faces"
+                    }
+                  ],
+                  "id": "t_en_gb0005835.001",
+                  "subsenses": [
+                    {
+                      "id": "ideaffd212-71df-4947-8ab0-1dd6c76c35a8",
+                      "synonyms": [
+                        {
+                          "language": "en",
+                          "text": "blushing"
+                        },
+                        {
+                          "language": "en",
+                          "text": "red-faced"
+                        },
+                        {
+                          "language": "en",
+                          "text": "blowsy"
+                        },
+                        {
+                          "language": "en",
+                          "text": "embarrassed"
+                        },
+                        {
+                          "language": "en",
+                          "text": "shamefaced"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "idad3b6695-cce0-455e-b139-cf3e500b2457",
+                      "registers": [
+                        {
+                          "id": "archaic",
+                          "text": "Archaic"
+                        }
+                      ],
+                      "synonyms": [
+                        {
+                          "language": "en",
+                          "text": "sanguine"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "idf424e97c-d976-4f68-901f-47a219f1d487",
+                      "registers": [
+                        {
+                          "id": "rare",
+                          "text": "Rare"
+                        }
+                      ],
+                      "synonyms": [
+                        {
+                          "language": "en",
+                          "text": "erubescent"
+                        },
+                        {
+                          "language": "en",
+                          "text": "rubescent"
+                        }
+                      ]
+                    }
+                  ],
+                  "synonyms": [
+                    {
+                      "language": "en",
+                      "text": "red"
+                    },
+                    {
+                      "language": "en",
+                      "text": "pink"
+                    },
+                    {
+                      "language": "en",
+                      "text": "ruddy"
+                    },
+                    {
+                      "language": "en",
+                      "text": "glowing"
+                    },
+                    {
+                      "language": "en",
+                      "text": "reddish"
+                    },
+                    {
+                      "language": "en",
+                      "text": "pinkish"
+                    },
+                    {
+                      "language": "en",
+                      "text": "florid"
+                    },
+                    {
+                      "language": "en",
+                      "text": "high-coloured"
+                    },
+                    {
+                      "language": "en",
+                      "text": "healthy-looking"
+                    },
+                    {
+                      "language": "en",
+                      "text": "aglow"
+                    },
+                    {
+                      "language": "en",
+                      "text": "burning"
+                    },
+                    {
+                      "language": "en",
+                      "text": "flaming"
+                    },
+                    {
+                      "language": "en",
+                      "text": "feverish"
+                    },
+                    {
+                      "language": "en",
+                      "text": "rubicund"
+                    },
+                    {
+                      "language": "en",
+                      "text": "roseate"
+                    },
+                    {
+                      "language": "en",
+                      "text": "rosy"
+                    }
+                  ]
+                },
+                {
+                  "antonyms": [
+                    {
+                      "language": "en",
+                      "text": "dismayed"
+                    }
+                  ],
+                  "examples": [
+                    {
+                      "text": "flushed with success, he was now getting into his stride"
+                    }
+                  ],
+                  "id": "t_en_gb0005835.002",
+                  "subsenses": [
+                    {
+                      "id": "ida6c823b9-baad-46db-bc0b-cd2a530682dc",
+                      "registers": [
+                        {
+                          "id": "informal",
+                          "text": "Informal"
+                        }
+                      ],
+                      "synonyms": [
+                        {
+                          "language": "en",
+                          "text": "blissed out"
+                        },
+                        {
+                          "language": "en",
+                          "text": "over the moon"
+                        },
+                        {
+                          "language": "en",
+                          "text": "high"
+                        },
+                        {
+                          "language": "en",
+                          "text": "on a high"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "id1d3a5846-63be-45bd-a323-521c057ca7bb",
+                      "regions": [
+                        {
+                          "id": "north_american",
+                          "text": "North American"
+                        }
+                      ],
+                      "registers": [
+                        {
+                          "id": "informal",
+                          "text": "Informal"
+                        }
+                      ],
+                      "synonyms": [
+                        {
+                          "language": "en",
+                          "text": "wigged out"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "id6db71f0e-c552-4e74-a413-3a600f796135",
+                      "registers": [
+                        {
+                          "id": "rare",
+                          "text": "Rare"
+                        }
+                      ],
+                      "synonyms": [
+                        {
+                          "language": "en",
+                          "text": "corybantic"
+                        }
+                      ]
+                    }
+                  ],
+                  "synonyms": [
+                    {
+                      "language": "en",
+                      "text": "elated"
+                    },
+                    {
+                      "language": "en",
+                      "text": "thrilled"
+                    },
+                    {
+                      "language": "en",
+                      "text": "exhilarated"
+                    },
+                    {
+                      "language": "en",
+                      "text": "happy"
+                    },
+                    {
+                      "language": "en",
+                      "text": "delighted"
+                    },
+                    {
+                      "language": "en",
+                      "text": "overjoyed"
+                    },
+                    {
+                      "language": "en",
+                      "text": "joyous"
+                    },
+                    {
+                      "language": "en",
+                      "text": "gleeful"
+                    },
+                    {
+                      "language": "en",
+                      "text": "excited"
+                    },
+                    {
+                      "language": "en",
+                      "text": "animated"
+                    },
+                    {
+                      "language": "en",
+                      "text": "jubilant"
+                    },
+                    {
+                      "language": "en",
+                      "text": "exultant"
+                    },
+                    {
+                      "language": "en",
+                      "text": "ecstatic"
+                    },
+                    {
+                      "language": "en",
+                      "text": "euphoric"
+                    },
+                    {
+                      "language": "en",
+                      "text": "rapturous"
+                    },
+                    {
+                      "language": "en",
+                      "text": "in raptures"
+                    },
+                    {
+                      "language": "en",
+                      "text": "enraptured"
+                    },
+                    {
+                      "language": "en",
+                      "text": "intoxicated"
+                    },
+                    {
+                      "language": "en",
+                      "text": "beside oneself"
+                    },
+                    {
+                      "language": "en",
+                      "text": "transported"
+                    },
+                    {
+                      "language": "en",
+                      "text": "carried away"
+                    },
+                    {
+                      "language": "en",
+                      "text": "impassioned"
+                    },
+                    {
+                      "language": "en",
+                      "text": "in a frenzy"
+                    },
+                    {
+                      "language": "en",
+                      "text": "delirious"
+                    },
+                    {
+                      "language": "en",
+                      "text": "hysterical"
+                    },
+                    {
+                      "language": "en",
+                      "text": "wild"
+                    },
+                    {
+                      "language": "en",
+                      "text": "frenzied"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "language": "en-gb",
+          "lexicalCategory": {
+            "id": "adjective",
+            "text": "Adjective"
+          },
+          "text": "flushed"
+        }
+      ],
+      "type": "headword",
+      "word": "flushed"
+    }
+  ],
+  "word": "flushed"
+}

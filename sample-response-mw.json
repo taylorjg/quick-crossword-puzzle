@@ -1,0 +1,1128 @@
+[
+  {
+    "meta": {
+      "id": "flushed",
+      "uuid": "b41a6d92-ebda-4ea3-a3d4-559b4eebaf2a",
+      "src": "CTcompile",
+      "section": "alpha",
+      "stems": [
+        "flushed"
+      ],
+      "syns": [
+        [
+          "bloomy",
+          "blowsy",
+          "blushing",
+          "pink",
+          "pinkish",
+          "warm",
+          "bronzed",
+          "brown",
+          "suntanned",
+          "tanned",
+          "cherubic",
+          "blooming",
+          "florid",
+          "flush",
+          "full-blooded",
+          "glowing",
+          "red",
+          "rosy",
+          "rubicund",
+          "ruddy",
+          "sanguine"
+        ],
+        [
+          "irrigated",
+          "laved",
+          "rinsed",
+          "sluiced",
+          "steeped",
+          "clammy",
+          "damp",
+          "dampish",
+          "dank",
+          "humid",
+          "moist",
+          "semimoist",
+          "wettish",
+          "aqueous",
+          "boggy",
+          "miry",
+          "seepy",
+          "sloppy",
+          "squashy",
+          "dipped",
+          "dunked",
+          "splashed",
+          "hydrated",
+          "submerged",
+          "swamped",
+          "deluged",
+          "drowned",
+          "flooded",
+          "inundated",
+          "overflowed",
+          "awash",
+          "bathed",
+          "bedraggled",
+          "doused",
+          "drenched",
+          "dripping",
+          "logged",
+          "saturate",
+          "saturated",
+          "soaked",
+          "soaking",
+          "sodden",
+          "soggy",
+          "sopping",
+          "soppy",
+          "soused",
+          "washed",
+          "watered",
+          "waterlogged",
+          "water-soaked",
+          "watery",
+          "wet"
+        ]
+      ],
+      "ants": [
+        [
+          "ashen",
+          "ashy",
+          "doughy",
+          "livid",
+          "lurid",
+          "mealy",
+          "pale",
+          "paled",
+          "palish",
+          "pallid",
+          "pasty",
+          "peaked",
+          "peaky",
+          "sallow",
+          "sallowish",
+          "wan",
+          "waxen",
+          "waxy",
+          "blanched",
+          "white",
+          "whitened",
+          "anemic",
+          "sick",
+          "sickly",
+          "bloodless",
+          "cadaverous",
+          "whey-faced",
+          "white-faced"
+        ],
+        [
+          "arid",
+          "dry",
+          "unwatered",
+          "waterless",
+          "bone-dry",
+          "hyperarid",
+          "ultradry",
+          "waterproof",
+          "water-repellent",
+          "water-resistant",
+          "watertight",
+          "baked",
+          "dehydrated",
+          "freeze-dried",
+          "droughty",
+          "parched",
+          "sere",
+          "sunbaked",
+          "thirsty",
+          "wrung"
+        ]
+      ],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "flushed"
+    },
+    "fl": "adjective",
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "sn": "1",
+                "dt": [
+                  [
+                    "text",
+                    "as in {it}warm{/it}, {it}pink{/it}"
+                  ]
+                ],
+                "sim_list": [
+                  [
+                    {
+                      "wd": "bloomy"
+                    },
+                    {
+                      "wd": "blowsy",
+                      "wvrs": [
+                        {
+                          "wvl": "also",
+                          "wva": "blowzy"
+                        }
+                      ]
+                    },
+                    {
+                      "wd": "blushing"
+                    },
+                    {
+                      "wd": "pink"
+                    },
+                    {
+                      "wd": "pinkish"
+                    },
+                    {
+                      "wd": "warm"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "bronzed"
+                    },
+                    {
+                      "wd": "brown"
+                    },
+                    {
+                      "wd": "suntanned"
+                    },
+                    {
+                      "wd": "tanned"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "cherubic"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "blooming"
+                    },
+                    {
+                      "wd": "florid"
+                    },
+                    {
+                      "wd": "flush"
+                    },
+                    {
+                      "wd": "full-blooded"
+                    },
+                    {
+                      "wd": "glowing"
+                    },
+                    {
+                      "wd": "red"
+                    },
+                    {
+                      "wd": "rosy"
+                    },
+                    {
+                      "wd": "rubicund"
+                    },
+                    {
+                      "wd": "ruddy"
+                    },
+                    {
+                      "wd": "sanguine"
+                    }
+                  ]
+                ],
+                "opp_list": [
+                  [
+                    {
+                      "wd": "ashen"
+                    },
+                    {
+                      "wd": "ashy"
+                    },
+                    {
+                      "wd": "doughy"
+                    },
+                    {
+                      "wd": "livid"
+                    },
+                    {
+                      "wd": "lurid"
+                    },
+                    {
+                      "wd": "mealy"
+                    },
+                    {
+                      "wd": "pale"
+                    },
+                    {
+                      "wd": "paled"
+                    },
+                    {
+                      "wd": "palish"
+                    },
+                    {
+                      "wd": "pallid"
+                    },
+                    {
+                      "wd": "pasty"
+                    },
+                    {
+                      "wd": "peaked"
+                    },
+                    {
+                      "wd": "peaky"
+                    },
+                    {
+                      "wd": "sallow"
+                    },
+                    {
+                      "wd": "sallowish"
+                    },
+                    {
+                      "wd": "wan"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "waxen"
+                    },
+                    {
+                      "wd": "waxy"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "blanched"
+                    },
+                    {
+                      "wd": "white"
+                    },
+                    {
+                      "wd": "whitened"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "anemic"
+                    },
+                    {
+                      "wd": "sick"
+                    },
+                    {
+                      "wd": "sickly"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "bloodless"
+                    },
+                    {
+                      "wd": "cadaverous"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "whey-faced"
+                    },
+                    {
+                      "wd": "white-faced"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ],
+          [
+            [
+              "sense",
+              {
+                "sn": "2",
+                "dt": [
+                  [
+                    "text",
+                    "as in {it}rinsed{/it}, {it}irrigated{/it}"
+                  ]
+                ],
+                "sim_list": [
+                  [
+                    {
+                      "wd": "irrigated"
+                    },
+                    {
+                      "wd": "laved"
+                    },
+                    {
+                      "wd": "rinsed"
+                    },
+                    {
+                      "wd": "sluiced"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "steeped"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "clammy"
+                    },
+                    {
+                      "wd": "damp"
+                    },
+                    {
+                      "wd": "dampish"
+                    },
+                    {
+                      "wd": "dank"
+                    },
+                    {
+                      "wd": "humid"
+                    },
+                    {
+                      "wd": "moist"
+                    },
+                    {
+                      "wd": "semimoist"
+                    },
+                    {
+                      "wd": "wettish"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "aqueous"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "boggy"
+                    },
+                    {
+                      "wd": "miry"
+                    },
+                    {
+                      "wd": "seepy"
+                    },
+                    {
+                      "wd": "sloppy"
+                    },
+                    {
+                      "wd": "squashy"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "dipped"
+                    },
+                    {
+                      "wd": "dunked"
+                    },
+                    {
+                      "wd": "splashed"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "hydrated"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "submerged"
+                    },
+                    {
+                      "wd": "swamped"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "deluged"
+                    },
+                    {
+                      "wd": "drowned"
+                    },
+                    {
+                      "wd": "flooded"
+                    },
+                    {
+                      "wd": "inundated"
+                    },
+                    {
+                      "wd": "overflowed"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "awash"
+                    },
+                    {
+                      "wd": "bathed"
+                    },
+                    {
+                      "wd": "bedraggled"
+                    },
+                    {
+                      "wd": "doused",
+                      "wvrs": [
+                        {
+                          "wvl": "also",
+                          "wva": "dowsed"
+                        }
+                      ]
+                    },
+                    {
+                      "wd": "drenched"
+                    },
+                    {
+                      "wd": "dripping"
+                    },
+                    {
+                      "wd": "logged"
+                    },
+                    {
+                      "wd": "saturate"
+                    },
+                    {
+                      "wd": "saturated"
+                    },
+                    {
+                      "wd": "soaked"
+                    },
+                    {
+                      "wd": "soaking"
+                    },
+                    {
+                      "wd": "sodden"
+                    },
+                    {
+                      "wd": "soggy"
+                    },
+                    {
+                      "wd": "sopping"
+                    },
+                    {
+                      "wd": "soppy"
+                    },
+                    {
+                      "wd": "soused"
+                    },
+                    {
+                      "wd": "washed"
+                    },
+                    {
+                      "wd": "watered"
+                    },
+                    {
+                      "wd": "waterlogged"
+                    },
+                    {
+                      "wd": "water-soaked"
+                    },
+                    {
+                      "wd": "watery"
+                    },
+                    {
+                      "wd": "wet"
+                    }
+                  ]
+                ],
+                "opp_list": [
+                  [
+                    {
+                      "wd": "arid"
+                    },
+                    {
+                      "wd": "dry"
+                    },
+                    {
+                      "wd": "unwatered"
+                    },
+                    {
+                      "wd": "waterless"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "bone-dry"
+                    },
+                    {
+                      "wd": "hyperarid"
+                    },
+                    {
+                      "wd": "ultradry"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "waterproof"
+                    },
+                    {
+                      "wd": "water-repellent"
+                    },
+                    {
+                      "wd": "water-resistant"
+                    },
+                    {
+                      "wd": "watertight"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "baked"
+                    },
+                    {
+                      "wd": "dehydrated"
+                    },
+                    {
+                      "wd": "freeze-dried"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "droughty"
+                    },
+                    {
+                      "wd": "parched"
+                    },
+                    {
+                      "wd": "sere",
+                      "wvrs": [
+                        {
+                          "wvl": "also",
+                          "wva": "sear"
+                        }
+                      ]
+                    },
+                    {
+                      "wd": "sunbaked"
+                    },
+                    {
+                      "wd": "thirsty"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "wrung"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "shortdef": [
+      "as in warm, pink",
+      "as in rinsed, irrigated"
+    ]
+  },
+  {
+    "meta": {
+      "id": "flushed",
+      "uuid": "7969c361-e51f-43d9-b3eb-4024022fcc70",
+      "src": "coll_thes",
+      "section": "alpha",
+      "stems": [
+        "flushed"
+      ],
+      "syns": [
+        [
+          "irrigated",
+          "rinsed",
+          "sluiced",
+          "washed",
+          "washed out"
+        ],
+        [
+          "bloomed",
+          "blushed",
+          "colored",
+          "crimsoned",
+          "glowed",
+          "reddened"
+        ]
+      ],
+      "ants": [],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "flushed"
+    },
+    "fl": "verb",
+    "sls": [
+      "past tense of {d_link|flush|flush}"
+    ],
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "sn": "1",
+                "dt": [
+                  [
+                    "text",
+                    "to pour liquid over or through in order to cleanse "
+                  ],
+                  [
+                    "vis",
+                    [
+                      {
+                        "t": "use this cleaner to {it}flush{/it} the drain in the sink"
+                      }
+                    ]
+                  ]
+                ],
+                "syn_list": [
+                  [
+                    {
+                      "wd": "irrigated"
+                    },
+                    {
+                      "wd": "rinsed"
+                    },
+                    {
+                      "wd": "sluiced"
+                    },
+                    {
+                      "wd": "washed"
+                    },
+                    {
+                      "wd": "washed out"
+                    }
+                  ]
+                ],
+                "rel_list": [
+                  [
+                    {
+                      "wd": "deluged"
+                    },
+                    {
+                      "wd": "engulfed"
+                    },
+                    {
+                      "wd": "flooded"
+                    },
+                    {
+                      "wd": "inundated"
+                    },
+                    {
+                      "wd": "swamped"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "flowed"
+                    },
+                    {
+                      "wd": "gushed"
+                    },
+                    {
+                      "wd": "rushed"
+                    },
+                    {
+                      "wd": "streamed"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "douched"
+                    },
+                    {
+                      "wd": "hosed"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "drenched"
+                    },
+                    {
+                      "wd": "saturated"
+                    },
+                    {
+                      "wd": "soaked"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "doused",
+                      "wvrs": [
+                        {
+                          "wvl": "also",
+                          "wva": "dowsed"
+                        }
+                      ]
+                    },
+                    {
+                      "wd": "sloshed"
+                    },
+                    {
+                      "wd": "splashed"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ],
+          [
+            [
+              "sense",
+              {
+                "sn": "2",
+                "dt": [
+                  [
+                    "text",
+                    "to develop a rosy facial color (as from excitement or embarrassment) "
+                  ],
+                  [
+                    "vis",
+                    [
+                      {
+                        "t": "he {it}flushed{/it} deeply upon hearing the compliment"
+                      }
+                    ]
+                  ]
+                ],
+                "syn_list": [
+                  [
+                    {
+                      "wd": "bloomed"
+                    },
+                    {
+                      "wd": "blushed"
+                    },
+                    {
+                      "wd": "colored"
+                    },
+                    {
+                      "wd": "crimsoned"
+                    },
+                    {
+                      "wd": "glowed"
+                    },
+                    {
+                      "wd": "reddened"
+                    }
+                  ]
+                ],
+                "rel_list": [
+                  [
+                    {
+                      "wd": "incarnadined"
+                    },
+                    {
+                      "wd": "rouged"
+                    },
+                    {
+                      "wd": "ruddled"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "abashed"
+                    },
+                    {
+                      "wd": "chagrined"
+                    },
+                    {
+                      "wd": "discomfited"
+                    },
+                    {
+                      "wd": "disconcerted"
+                    },
+                    {
+                      "wd": "embarrassed"
+                    },
+                    {
+                      "wd": "fazed"
+                    },
+                    {
+                      "wd": "humiliated"
+                    },
+                    {
+                      "wd": "mortified"
+                    }
+                  ]
+                ],
+                "phrase_list": [
+                  [
+                    {
+                      "wd": "turned color"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "shortdef": [
+      "to pour liquid over or through in order to cleanse",
+      "to develop a rosy facial color (as from excitement or embarrassment)"
+    ]
+  },
+  {
+    "meta": {
+      "id": "flush",
+      "uuid": "659d8892-8a7d-4800-9960-c6613923d302",
+      "src": "coll_thes",
+      "section": "alpha",
+      "target": {
+        "tuuid": "710b0ca5-bf6f-4c73-acf5-35ddf7b8adc8",
+        "tsrc": "collegiate"
+      },
+      "stems": [
+        "flush",
+        "flushed",
+        "flushes",
+        "flushing"
+      ],
+      "syns": [
+        [
+          "irrigate",
+          "rinse",
+          "sluice",
+          "wash",
+          "wash out"
+        ],
+        [
+          "bloom",
+          "blush",
+          "color",
+          "crimson",
+          "glow",
+          "redden"
+        ]
+      ],
+      "ants": [],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "flush"
+    },
+    "fl": "verb",
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "sn": "1",
+                "dt": [
+                  [
+                    "text",
+                    "to pour liquid over or through in order to cleanse "
+                  ],
+                  [
+                    "vis",
+                    [
+                      {
+                        "t": "use this cleaner to {it}flush{/it} the drain in the sink"
+                      }
+                    ]
+                  ]
+                ],
+                "syn_list": [
+                  [
+                    {
+                      "wd": "irrigate"
+                    },
+                    {
+                      "wd": "rinse"
+                    },
+                    {
+                      "wd": "sluice"
+                    },
+                    {
+                      "wd": "wash"
+                    },
+                    {
+                      "wd": "wash out"
+                    }
+                  ]
+                ],
+                "rel_list": [
+                  [
+                    {
+                      "wd": "deluge"
+                    },
+                    {
+                      "wd": "engulf"
+                    },
+                    {
+                      "wd": "flood"
+                    },
+                    {
+                      "wd": "inundate"
+                    },
+                    {
+                      "wd": "swamp"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "flow"
+                    },
+                    {
+                      "wd": "gush"
+                    },
+                    {
+                      "wd": "rush"
+                    },
+                    {
+                      "wd": "stream"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "douche"
+                    },
+                    {
+                      "wd": "hose"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "drench"
+                    },
+                    {
+                      "wd": "saturate"
+                    },
+                    {
+                      "wd": "soak"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "douse",
+                      "wvrs": [
+                        {
+                          "wvl": "also",
+                          "wva": "dowse"
+                        }
+                      ]
+                    },
+                    {
+                      "wd": "slosh"
+                    },
+                    {
+                      "wd": "splash"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ],
+          [
+            [
+              "sense",
+              {
+                "sn": "2",
+                "dt": [
+                  [
+                    "text",
+                    "to develop a rosy facial color (as from excitement or embarrassment) "
+                  ],
+                  [
+                    "vis",
+                    [
+                      {
+                        "t": "he {it}flushed{/it} deeply upon hearing the compliment"
+                      }
+                    ]
+                  ]
+                ],
+                "syn_list": [
+                  [
+                    {
+                      "wd": "bloom"
+                    },
+                    {
+                      "wd": "blush"
+                    },
+                    {
+                      "wd": "color"
+                    },
+                    {
+                      "wd": "crimson"
+                    },
+                    {
+                      "wd": "glow"
+                    },
+                    {
+                      "wd": "redden"
+                    }
+                  ]
+                ],
+                "rel_list": [
+                  [
+                    {
+                      "wd": "incarnadine"
+                    },
+                    {
+                      "wd": "rouge"
+                    },
+                    {
+                      "wd": "ruddle"
+                    }
+                  ],
+                  [
+                    {
+                      "wd": "abash"
+                    },
+                    {
+                      "wd": "chagrin"
+                    },
+                    {
+                      "wd": "discomfit"
+                    },
+                    {
+                      "wd": "disconcert"
+                    },
+                    {
+                      "wd": "embarrass"
+                    },
+                    {
+                      "wd": "faze"
+                    },
+                    {
+                      "wd": "humiliate"
+                    },
+                    {
+                      "wd": "mortify"
+                    }
+                  ]
+                ],
+                "phrase_list": [
+                  [
+                    {
+                      "wd": "turn color"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "shortdef": [
+      "to pour liquid over or through in order to cleanse",
+      "to develop a rosy facial color (as from excitement or embarrassment)"
+    ]
+  }
+]
