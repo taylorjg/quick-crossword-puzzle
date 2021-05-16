@@ -1,5 +1,7 @@
 const range = n => Array.from(Array(n).keys())
 
+const PUZZLE_WALL = 'X'
+
 const analyseGrid = grid => {
   const numRows = grid.length
   const numCols = grid[0].length
@@ -8,7 +10,7 @@ const analyseGrid = grid => {
   const isWall = (row, col) => (
     row < 0 || row > lastRow ||
     col < 0 || col > lastCol ||
-    grid[row][col] !== '.'
+    grid[row][col] === PUZZLE_WALL
   )
   const leftIsWall = (row, col) => isWall(row, col - 1)
   const rightIsWall = (row, col) => isWall(row, col + 1)
@@ -67,41 +69,43 @@ const analyseGrid = grid => {
   }
 }
 
-//              bold    normal
+// https://unicode.org/charts/PDF/U2500.pdf
+const DOWN_AND_RIGHT_CHAR = '\u250C'
+const DOWN_AND_LEFT_CHAR = '\u2510'
+const UP_AND_RIGHT_CHAR = '\u2514'
+const UP_AND_LEFT_CHAR = '\u2518'
+const DOWN_AND_HORIZONTAL_CHAR = '\u252C'
+const UP_AND_HORIZONTAL_CHAR = '\u2534'
+const HORIZONTAL_CHAR = '\u2500'
+const VERTICAL_CHAR = '\u2502'
 
-// tl:          250F    250C
-// tr:          2513    2510
-// bl:          2517    2514
-// br:          251B    2518
+// https://unicode.org/charts/PDF/U2580.pdf
+const FULL_BLOCK_CHAR = '\u2588'
 
-// top t:       2533    252C
-// bottom t:    253B    2534
-// left t:      2523    251C
-// right t:     252B    2524
+const SPACE_CHAR = ' '
 
-// top/bottom:  2501    2500
-// left/right:  2503    2502
+const gridlinesHelper = (numCols, startChar, endChar, middleChar, separatorChar) =>
+  startChar + Array(numCols).fill(middleChar).join(separatorChar) + endChar
 
-// cross:       254B    253C
+const topGridlines = numCols =>
+  gridlinesHelper(
+    numCols,
+    DOWN_AND_RIGHT_CHAR,
+    DOWN_AND_LEFT_CHAR,
+    HORIZONTAL_CHAR,
+    DOWN_AND_HORIZONTAL_CHAR)
 
-const topGridlines = numCols => {
-  return '\u250C' + (Array(numCols).fill('\u2500').join('\u252C')) + '\u2510'
-  // return '\u250C' + (Array(numCols).fill('\u2500').join('\u2500')) + '\u2510'
-}
-
-// const middleGridlines = numCols => {
-//   return '\u251C' + (Array(numCols).fill('\u2500').join('\u253C')) + '\u2524'
-// }
-
-const bottomGridlines = numCols => {
-  return '\u2514' + (Array(numCols).fill('\u2500').join('\u2534')) + '\u2518'
-  // return '\u2514' + (Array(numCols).fill('\u2500').join('\u2500')) + '\u2518'
-}
+const bottomGridlines = numCols =>
+  gridlinesHelper(
+    numCols,
+    UP_AND_RIGHT_CHAR,
+    UP_AND_LEFT_CHAR,
+    HORIZONTAL_CHAR,
+    UP_AND_HORIZONTAL_CHAR)
 
 const renderGrid = (grid, acrossAnswers, downAnswers, gridAnalysis) => {
   const gridSquareCharacters = grid.map(row =>
-    Array.from(row).map(ch =>
-      ch !== '.' ? '\u2592' : ' '))
+    Array.from(row).map(ch => ch === PUZZLE_WALL ? FULL_BLOCK_CHAR : SPACE_CHAR))
 
   if (acrossAnswers && downAnswers && gridAnalysis) {
     gridAnalysis.across.forEach((clueDetails, clueIndex) => {
@@ -125,15 +129,10 @@ const renderGrid = (grid, acrossAnswers, downAnswers, gridAnalysis) => {
     })
   }
 
-  const numRows = grid.length
   const numCols = grid[0].length
   console.log(topGridlines(numCols))
-  gridSquareCharacters.forEach((row, index) => {
-    console.log('\u2502' + row.join('\u2502') + '\u2502')
-    // console.log('\u2502' + row.join(' ') + '\u2502')
-    if (index < numRows - 1) {
-      // console.log(middleGridlines(numCols))
-    }
+  gridSquareCharacters.forEach(row => {
+    console.log(VERTICAL_CHAR + row.join(VERTICAL_CHAR) + VERTICAL_CHAR)
   })
   console.log(bottomGridlines(numCols))
 }
