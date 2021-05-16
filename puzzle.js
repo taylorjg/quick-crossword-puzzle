@@ -67,10 +67,41 @@ const analyseGrid = grid => {
   }
 }
 
+//              bold    normal
+
+// tl:          250F    250C
+// tr:          2513    2510
+// bl:          2517    2514
+// br:          251B    2518
+
+// top t:       2533    252C
+// bottom t:    253B    2534
+// left t:      2523    251C
+// right t:     252B    2524
+
+// top/bottom:  2501    2500
+// left/right:  2503    2502
+
+// cross:       254B    253C
+
+const topGridlines = numCols => {
+  return '\u250C' + (Array(numCols).fill('\u2500').join('\u252C')) + '\u2510'
+  // return '\u250C' + (Array(numCols).fill('\u2500').join('\u2500')) + '\u2510'
+}
+
+// const middleGridlines = numCols => {
+//   return '\u251C' + (Array(numCols).fill('\u2500').join('\u253C')) + '\u2524'
+// }
+
+const bottomGridlines = numCols => {
+  return '\u2514' + (Array(numCols).fill('\u2500').join('\u2534')) + '\u2518'
+  // return '\u2514' + (Array(numCols).fill('\u2500').join('\u2500')) + '\u2518'
+}
+
 const renderGrid = (grid, acrossAnswers, downAnswers, gridAnalysis) => {
   const gridSquareCharacters = grid.map(row =>
     Array.from(row).map(ch =>
-      ch !== '.' ? '\u2591' : ' '))
+      ch !== '.' ? '\u2592' : ' '))
 
   if (acrossAnswers && downAnswers && gridAnalysis) {
     gridAnalysis.across.forEach((clueDetails, clueIndex) => {
@@ -94,7 +125,17 @@ const renderGrid = (grid, acrossAnswers, downAnswers, gridAnalysis) => {
     })
   }
 
-  gridSquareCharacters.forEach(row => console.log(row.join('')))
+  const numRows = grid.length
+  const numCols = grid[0].length
+  console.log(topGridlines(numCols))
+  gridSquareCharacters.forEach((row, index) => {
+    console.log('\u2502' + row.join('\u2502') + '\u2502')
+    // console.log('\u2502' + row.join(' ') + '\u2502')
+    if (index < numRows - 1) {
+      // console.log(middleGridlines(numCols))
+    }
+  })
+  console.log(bottomGridlines(numCols))
 }
 
 module.exports = {
