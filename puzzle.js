@@ -1,4 +1,4 @@
-const range = n => Array.from(Array(n).keys())
+const U = require('./utils')
 
 const PUZZLE_WALL = 'X'
 
@@ -37,8 +37,8 @@ const analyseGrid = grid => {
   let nextClueNumber = 1
   const acrossClues = []
   const downClues = []
-  for (const row of range(numRows)) {
-    for (const col of range(numCols)) {
+  for (const row of U.range(numRows)) {
+    for (const col of U.range(numCols)) {
       if (isWall(row, col)) continue
       const newAcrossClue = leftIsWall(row, col) && !rightIsWall(row, col)
       const newDownClue = aboveIsWall(row, col) && !belowIsWall(row, col)
@@ -64,8 +64,10 @@ const analyseGrid = grid => {
     }
   }
   return {
-    across: acrossClues,
-    down: downClues
+    numRows,
+    numCols,
+    acrossClues,
+    downClues
   }
 }
 
@@ -108,7 +110,7 @@ const renderGrid = (puzzle, gridAnalysis) => {
   const gridSquareCharacters = puzzle.GRID.map(row =>
     Array.from(row).map(ch => ch === PUZZLE_WALL ? FULL_BLOCK_CHAR : SPACE_CHAR))
 
-  gridAnalysis.across.forEach((clueDetails, clueIndex) => {
+  gridAnalysis.acrossClues.forEach((clueDetails, clueIndex) => {
     const answer = puzzle.ACROSS_ANSWERS[clueIndex]
     if (answer) {
       const answerCharacters = Array.from(answer)
@@ -118,7 +120,7 @@ const renderGrid = (puzzle, gridAnalysis) => {
     }
   })
 
-  gridAnalysis.down.forEach((clueDetails, clueIndex) => {
+  gridAnalysis.downClues.forEach((clueDetails, clueIndex) => {
     const answer = puzzle.DOWN_ANSWERS[clueIndex]
     if (answer) {
       const answerCharacters = Array.from(answer)
