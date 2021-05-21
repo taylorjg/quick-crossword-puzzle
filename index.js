@@ -9,33 +9,46 @@ const { MW_DICTIONARY_KEY, MW_THESAURUS_KEY } = process.env
 
 const MW = configureMW(MW_DICTIONARY_KEY, MW_THESAURUS_KEY)
 
+const isSameGridSquare = (gs1, gs2) =>
+  gs1.row === gs2.row && gs1.col === gs2.col
+
+const enrichAcrossClues = (puzzle, gridAnalysis) =>
+  gridAnalysis.across.map((clueDetails, index) => ({
+    ...clueDetails,
+    clue: puzzle.ACROSS_CLUES[index],
+    answer: puzzle.ACROSS_ANSWERS[index]
+  }))
+
+const enrichDownClues = (puzzle, gridAnalysis) =>
+  gridAnalysis.down.map((clueDetails, index) => ({
+    ...clueDetails,
+    clue: puzzle.DOWN_CLUES[index],
+    answer: puzzle.DOWN_ANSWERS[index]
+  }))
+
+const addPossibles = async (thesaurusService, clueDetailsCollection) => {
+  const promises = clueDetailsCollection.map(async clueDetails => {
+    const { clue, answerLength, answer } = clueDetails
+    const possibles = await thesaurusService.getPossibles(clue, answerLength)
+    return {
+      ...clueDetails,
+      possibles
+    }
+  })
+  return Promise.all(promises)
+}
+
 const main = async () => {
   const gridAnalysis = analyseGrid(SAMPLE_PUZZLE.GRID)
-  renderGrid(
-    SAMPLE_PUZZLE.GRID,
-    SAMPLE_PUZZLE.ACROSS_ANSWERS,
-    SAMPLE_PUZZLE.DOWN_ANSWERS,
-    gridAnalysis)
-  const acrossCluesDetails = gridAnalysis.across.map((clueDetails, index) => ({
-    ...clueDetails,
-    clue: SAMPLE_PUZZLE.ACROSS_CLUES[index],
-    answer: SAMPLE_PUZZLE.ACROSS_ANSWERS[index]
-  }))
-  const downCluesDetails = gridAnalysis.down.map((clueDetails, index) => ({
-    ...clueDetails,
-    clue: SAMPLE_PUZZLE.DOWN_CLUES[index],
-    answer: SAMPLE_PUZZLE.DOWN_ANSWERS[index]
-  }))
-  const allClueDetails = acrossCluesDetails.concat(downCluesDetails)
-  for (const clueDetails of allClueDetails) {
-    const possibles = await MW.getPossibles(clueDetails.clue, clueDetails.answerLength)
-    console.log(`${clueDetails.clue} (${clueDetails.answerLength})`)
-    console.dir(possibles)
-    if (possibles.includes(clueDetails.answer)) {
-      console.log('*** FOUND ANSWER ***')
-    }
-    console.log('-'.repeat(80))
-  }
+  renderGrid(SAMPLE_PUZZLE, gridAnalysis)
+  const acrossCluesDetails = enrichAcrossClues(SAMPLE_PUZZLE, gridAnalysis)
+  const downCluesDetails = enrichDownClues(SAMPLE_PUZZLE, gridAnalysis)
+  const acrossClueDetailsWithPossibles = await addPossibles(MW, acrossCluesDetails)
+  const downClueDetailsWithPossibles = await addPossibles(MW, downCluesDetails)
+  console.log()
+  console.dir(acrossClueDetailsWithPossibles)
+  console.log()
+  console.dir(downClueDetailsWithPossibles)
 }
 
 main()

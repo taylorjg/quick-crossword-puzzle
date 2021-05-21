@@ -103,33 +103,32 @@ const bottomGridlines = numCols =>
     HORIZONTAL_CHAR,
     UP_AND_HORIZONTAL_CHAR)
 
-const renderGrid = (grid, acrossAnswers, downAnswers, gridAnalysis) => {
-  const gridSquareCharacters = grid.map(row =>
+const renderGrid = (puzzle, gridAnalysis) => {
+
+  const gridSquareCharacters = puzzle.GRID.map(row =>
     Array.from(row).map(ch => ch === PUZZLE_WALL ? FULL_BLOCK_CHAR : SPACE_CHAR))
 
-  if (acrossAnswers && downAnswers && gridAnalysis) {
-    gridAnalysis.across.forEach((clueDetails, clueIndex) => {
-      const answer = acrossAnswers[clueIndex]
-      if (answer) {
-        const answerCharacters = Array.from(answer)
-        clueDetails.gridSquares.forEach(({ row, col }, index) => {
-          gridSquareCharacters[row][col] = answerCharacters[index].toUpperCase()
-        })
-      }
-    })
+  gridAnalysis.across.forEach((clueDetails, clueIndex) => {
+    const answer = puzzle.ACROSS_ANSWERS[clueIndex]
+    if (answer) {
+      const answerCharacters = Array.from(answer)
+      clueDetails.gridSquares.forEach(({ row, col }, index) => {
+        gridSquareCharacters[row][col] = answerCharacters[index].toUpperCase()
+      })
+    }
+  })
 
-    gridAnalysis.down.forEach((clueDetails, clueIndex) => {
-      const answer = downAnswers[clueIndex]
-      if (answer) {
-        const answerCharacters = Array.from(answer)
-        clueDetails.gridSquares.forEach(({ row, col }, index) => {
-          gridSquareCharacters[row][col] = answerCharacters[index].toUpperCase()
-        })
-      }
-    })
-  }
+  gridAnalysis.down.forEach((clueDetails, clueIndex) => {
+    const answer = puzzle.DOWN_ANSWERS[clueIndex]
+    if (answer) {
+      const answerCharacters = Array.from(answer)
+      clueDetails.gridSquares.forEach(({ row, col }, index) => {
+        gridSquareCharacters[row][col] = answerCharacters[index].toUpperCase()
+      })
+    }
+  })
 
-  const numCols = grid[0].length
+  const numCols = puzzle.GRID[0].length
   console.log(topGridlines(numCols))
   gridSquareCharacters.forEach(row => {
     console.log(VERTICAL_CHAR + row.join(VERTICAL_CHAR) + VERTICAL_CHAR)
