@@ -1,3 +1,4 @@
+const assert = require('assert')
 const dotenv = require('dotenv')
 
 const configureMW = require('./mw')
@@ -19,6 +20,7 @@ const hasGridSquare = gs1 => clueDetails =>
 const enrichAcrossClues = (puzzle, gridAnalysis) =>
   gridAnalysis.acrossClues.map((clueDetails, index) => ({
     ...clueDetails,
+    isAcrossClue: true,
     clue: puzzle.ACROSS_CLUES[index],
     answer: puzzle.ACROSS_ANSWERS[index]
   }))
@@ -26,12 +28,13 @@ const enrichAcrossClues = (puzzle, gridAnalysis) =>
 const enrichDownClues = (puzzle, gridAnalysis) =>
   gridAnalysis.downClues.map((clueDetails, index) => ({
     ...clueDetails,
+    isAcrossClue: false,
     clue: puzzle.DOWN_CLUES[index],
     answer: puzzle.DOWN_ANSWERS[index]
   }))
 
 const addPossibles = async (thesaurusService, clueDetailsCollection) => {
-  return clueDetailsCollection
+  // return clueDetailsCollection
   const promises = clueDetailsCollection.map(async clueDetails => {
     const { clue, answerLength, answer } = clueDetails
     const possibles = await thesaurusService.getPossibles(clue, answerLength)
@@ -41,6 +44,86 @@ const addPossibles = async (thesaurusService, clueDetailsCollection) => {
     }
   })
   return Promise.all(promises)
+}
+
+// ...
+// .X.
+// .X.
+//
+// each grid square can be a or b or c
+//
+// abc
+// aXc
+// aXc
+//
+// 3 words each of which has 2 possibles (1 correct and 1 wrong):
+// 1a) abc (correct) or bbb (wrong)
+// 1d) aaa (correct) or bab (wrong)
+// 2d) ccc (correct) or aca (wrong)
+//
+// total columns: 6 (alphabet size * number of cross checking grid squares = 3 * 2)
+// total number of rows: sum of number of possibles for each word = 2 + 2 + 2
+//
+// 100 001 # 1a) abc
+// 010 010 # 1a) bbb
+// 011 000 # 1d) aaa
+// 101 000 # 1d) bab
+// 110 000 # 2d) ccc
+// 011 000 # 2d) aca
+
+const encodeLetter = (letter, isAcrossClue) => {
+  const flags = Array(26).fill(false)
+  const flagIndex = letter - 'a'
+  assert(flagIndex >= 0)
+  assert(flagIndex < flags.length)
+  flags[flagIndex] = true
+  const acrossEncoding = flag => flag ? 1 : 0
+  const downEncoding = flag => flag ? 0 : 1
+  return flags.map(isAcrossClue ? acrossEncoding : downEncoding)
+}
+
+const makeDlxRowForPossible = (crossCheckingGridSquares, gridSquares, possible, isAcrossClue) => {
+  // TODO: we could determine 'isAcrossClue' by examining 'gridSquares'
+  // all rows same => isAcrossClue: true
+  // all cols same => isAcrossClue: false
+  const row = Array(crossCheckingGridSquares.length * 26).fill(0)
+  gridSquares.forEach((gridSquare, gridSquareIndex) => {
+    const crossCheckingGridSquaresIndex = crossCheckingGridSquares.findIndex(gs => isSameGridSquare(gridSquare, gs))
+    if (crossCheckingGridSquaresIndex >= 0) {
+      const encodedLetterColumns = encodeLetter(possible[gridSquareIndex], isAcrossClue)
+      const startIndex = crossCheckingGridSquaresIndex * 26
+      encodedLetterColumns.forEach((value, index) => {
+        row[startIndex + index] = value
+      })
+    }
+  })
+  return row
+}
+
+const makeDlxRowsForPossibles = (crossCheckingGridSquares, gridSquares, possibles, isAcrossClue) =>
+  possibles.map(possible => makeDlxRowForPossible(crossCheckingGridSquares, gridSquares, possible, isAcrossClue))
+
+const addDlxRowsForClues = (matrix, map, crossCheckingGridSquares, clueDetailsCollection) => {
+  for (const clueDetails of clueDetailsCollection) {
+    const rows = makeDlxRowsForPossibles(
+      crossCheckingGridSquares,
+      clueDetails.gridSquares,
+      clueDetails.possibles,
+      clueDetails.isAcrossClue)
+    rows.forEach((row, possibleIndex) => {
+      const rowIndex = matrix.length
+      map.set(rowIndex, { clueDetails, possibleIndex })
+      matrix.push(row)
+    })
+  }
+}
+
+const makeDlxMatrix = (crossCheckingGridSquares, acrossClueDetails, downClueDetails) => {
+  const matrix = []
+  const map = new Map
+  addDlxRowsForClues(matrix, map, crossCheckingGridSquares, acrossClueDetails)
+  addDlxRowsForClues(matrix, map, crossCheckingGridSquares, downClueDetails)
+  return { matrix, map }
 }
 
 const main = async () => {
@@ -72,7 +155,10 @@ const main = async () => {
     }
   }
   console.log('crossCheckingGridSquares count:', crossCheckingGridSquares.length)
-  console.dir(crossCheckingGridSquares)
+  // console.dir(crossCheckingGridSquares)
+
+  const { matrix, map } = makeDlxMatrix(crossCheckingGridSquares, acrossClueDetails, downClueDetails)
+  console.dir(map)
 }
 
 main()
