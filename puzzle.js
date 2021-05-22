@@ -1,6 +1,5 @@
+const C = require('./constants')
 const U = require('./utils')
-
-const PUZZLE_WALL = 'X'
 
 const analyseGrid = grid => {
   const numRows = grid.length
@@ -10,7 +9,7 @@ const analyseGrid = grid => {
   const isWall = (row, col) => (
     row < 0 || row > lastRow ||
     col < 0 || col > lastCol ||
-    grid[row][col] === PUZZLE_WALL
+    grid[row][col] === C.PUZZLE_WALL
   )
   const leftIsWall = (row, col) => isWall(row, col - 1)
   const rightIsWall = (row, col) => isWall(row, col + 1)
@@ -105,30 +104,18 @@ const bottomGridlines = numCols =>
     HORIZONTAL_CHAR,
     UP_AND_HORIZONTAL_CHAR)
 
-const renderGrid = (puzzle, gridAnalysis) => {
+const renderGrid = (puzzle, map, solution) => {
 
   const gridSquareCharacters = puzzle.GRID.map(row =>
-    Array.from(row).map(ch => ch === PUZZLE_WALL ? FULL_BLOCK_CHAR : SPACE_CHAR))
+    Array.from(row).map(ch => ch === C.PUZZLE_WALL ? FULL_BLOCK_CHAR : SPACE_CHAR))
 
-  gridAnalysis.acrossClues.forEach((clueDetails, clueIndex) => {
-    const answer = puzzle.ACROSS_ANSWERS[clueIndex]
-    if (answer) {
-      const answerCharacters = Array.from(answer)
-      clueDetails.gridSquares.forEach(({ row, col }, index) => {
-        gridSquareCharacters[row][col] = answerCharacters[index].toUpperCase()
-      })
-    }
-  })
-
-  gridAnalysis.downClues.forEach((clueDetails, clueIndex) => {
-    const answer = puzzle.DOWN_ANSWERS[clueIndex]
-    if (answer) {
-      const answerCharacters = Array.from(answer)
-      clueDetails.gridSquares.forEach(({ row, col }, index) => {
-        gridSquareCharacters[row][col] = answerCharacters[index].toUpperCase()
-      })
-    }
-  })
+  for (const rowIndex of solution) {
+    const { clueDetails, possibleIndex } = map.get(rowIndex)
+    const answer = clueDetails.possibles[possibleIndex]
+    clueDetails.gridSquares.forEach((gs, index) => {
+      gridSquareCharacters[gs.row][gs.col] = answer[index].toUpperCase()
+    })
+  }
 
   const numCols = puzzle.GRID[0].length
   console.log(topGridlines(numCols))

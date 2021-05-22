@@ -104,25 +104,12 @@ const makeDlxMatrix = (crossCheckingGridSquares, acrossClueDetails, downClueDeta
   return { matrix, map }
 }
 
-const showSolution = (map, solution) => {
-  for (const rowIndex of solution) {
-    const { clueDetails, possibleIndex } = map.get(rowIndex)
-    // console.log('clueDetails:', clueDetails, 'possibleIndex:', possibleIndex)
-    console.log(`${clueDetails.clueNumber}${clueDetails.isAcrossClue ? 'A' : 'D'}: answer: ${clueDetails.answer}; chosen possible: ${clueDetails.possibles[possibleIndex]}`)
-  }
-}
-
 const main = async () => {
   const gridAnalysis = analyseGrid(SAMPLE_PUZZLE.GRID)
+  console.log('getting possibles for across clues...')
   const acrossClueDetails = await addPossibles(MW, enrichAcrossClues(SAMPLE_PUZZLE, gridAnalysis))
+  console.log('getting possibles for down clues...')
   const downClueDetails = await addPossibles(MW, enrichDownClues(SAMPLE_PUZZLE, gridAnalysis))
-
-  renderGrid(SAMPLE_PUZZLE, gridAnalysis)
-
-  // console.log()
-  // console.dir(acrossClueDetails)
-  // console.log()
-  // console.dir(downClueDetails)
 
   const crossCheckingGridSquares = []
   for (const row of U.range(gridAnalysis.numRows)) {
@@ -147,16 +134,11 @@ const main = async () => {
       }
     }
   }
-  console.log('crossCheckingGridSquares count:', crossCheckingGridSquares.length)
-  // console.dir(crossCheckingGridSquares)
 
   const { matrix, map } = makeDlxMatrix(crossCheckingGridSquares, acrossClueDetails, downClueDetails)
-  // console.dir(map)
-
   const dlx = new dlxlib.Dlx()
   const solutions = dlx.solve(matrix)
-  // console.dir(solutions)
-  showSolution(map, solutions[0])
+  renderGrid(SAMPLE_PUZZLE, map, solutions[0])
 }
 
 main()
