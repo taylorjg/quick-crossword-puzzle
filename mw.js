@@ -5,6 +5,8 @@
 
 const axios = require('axios')
 
+const C = require('./constants')
+
 const configure = (MW_DICTIONARY_KEY, MW_THESAURUS_KEY) => {
 
   const MW_URL = 'https://www.dictionaryapi.com/api/v3'
@@ -28,7 +30,8 @@ const configure = (MW_DICTIONARY_KEY, MW_THESAURUS_KEY) => {
     const response = await axios.get(url, THESAURUS_AXIOS_CONFIG)
     const possibles = response.data
       .flatMap(entry => entry.meta.syns.flatMap(syns => syns))
-      .filter(syn => syn.length === answerLength)
+      .filter(possible => possible.length === answerLength)
+      .filter(possible => Array.from(possible).every(ch => C.LOWERCASSE_ALPHABET.includes(ch)))
     return Array.from(new Set(possibles).values())
   }
 

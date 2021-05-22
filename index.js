@@ -1,4 +1,5 @@
 const assert = require('assert')
+const dlxlib = require('dlxlib')
 const dotenv = require('dotenv')
 
 const configureMW = require('./mw')
@@ -68,12 +69,13 @@ const addPossibles = async (thesaurusService, clueDetailsCollection) => {
 // 010 010 # 1a) bbb
 // 011 000 # 1d) aaa
 // 101 000 # 1d) bab
-// 110 000 # 2d) ccc
-// 011 000 # 2d) aca
+// 000 110 # 2d) ccc
+// 000 011 # 2d) aca
 
 const encodeLetter = (letter, isAcrossClue) => {
   const flags = Array(26).fill(false)
-  const flagIndex = letter - 'a'
+  const flagIndex = letter.charCodeAt(0) - 'a'.charCodeAt(0)
+  // console.log(`letter: ${letter}; flagIndex: ${flagIndex}; ${letter.charCodeAt(0)}; ${'a'.charCodeAt(0)}`)
   assert(flagIndex >= 0)
   assert(flagIndex < flags.length)
   flags[flagIndex] = true
@@ -88,7 +90,8 @@ const makeDlxRowForPossible = (crossCheckingGridSquares, gridSquares, possible, 
   // all cols same => isAcrossClue: false
   const row = Array(crossCheckingGridSquares.length * 26).fill(0)
   gridSquares.forEach((gridSquare, gridSquareIndex) => {
-    const crossCheckingGridSquaresIndex = crossCheckingGridSquares.findIndex(gs => isSameGridSquare(gridSquare, gs))
+    const crossCheckingGridSquaresIndex = crossCheckingGridSquares.findIndex(crossCheckingGridSquare =>
+      isSameGridSquare(gridSquare, crossCheckingGridSquare.gridSquare))
     if (crossCheckingGridSquaresIndex >= 0) {
       const encodedLetterColumns = encodeLetter(possible[gridSquareIndex], isAcrossClue)
       const startIndex = crossCheckingGridSquaresIndex * 26
@@ -105,22 +108,24 @@ const makeDlxRowsForPossibles = (crossCheckingGridSquares, gridSquares, possible
 
 const addDlxRowsForClues = (matrix, map, crossCheckingGridSquares, clueDetailsCollection) => {
   for (const clueDetails of clueDetailsCollection) {
-    const rows = makeDlxRowsForPossibles(
-      crossCheckingGridSquares,
-      clueDetails.gridSquares,
-      clueDetails.possibles,
-      clueDetails.isAcrossClue)
-    rows.forEach((row, possibleIndex) => {
-      const rowIndex = matrix.length
-      map.set(rowIndex, { clueDetails, possibleIndex })
-      matrix.push(row)
-    })
+    if (clueDetails.possibles.includes(clueDetails.answer)) {
+      const rows = makeDlxRowsForPossibles(
+        crossCheckingGridSquares,
+        clueDetails.gridSquares,
+        clueDetails.possibles,
+        clueDetails.isAcrossClue)
+      rows.forEach((row, possibleIndex) => {
+        const rowIndex = matrix.length
+        map.set(rowIndex, { clueDetails, possibleIndex })
+        matrix.push(row)
+      })
+    }
   }
 }
 
 const makeDlxMatrix = (crossCheckingGridSquares, acrossClueDetails, downClueDetails) => {
   const matrix = []
-  const map = new Map
+  const map = new Map()
   addDlxRowsForClues(matrix, map, crossCheckingGridSquares, acrossClueDetails)
   addDlxRowsForClues(matrix, map, crossCheckingGridSquares, downClueDetails)
   return { matrix, map }
@@ -158,7 +163,24 @@ const main = async () => {
   // console.dir(crossCheckingGridSquares)
 
   const { matrix, map } = makeDlxMatrix(crossCheckingGridSquares, acrossClueDetails, downClueDetails)
-  console.dir(map)
+  // console.dir(map)
+  // const matrix = [
+  //   [1, 0, 0, 0, 0, 1], // 0 <-
+  //   [0, 1, 0, 0, 1, 0], // 1
+  //   [0, 1, 1, 0, 0, 0], // 2 <-
+  //   [1, 0, 1, 0, 0, 0], // 3
+  //   [0, 0, 0, 1, 1, 0], // 4 <-
+  //   [0, 0, 0, 0, 1, 1]  // 5
+  // ]
+
+  // matrix.forEach((row, rowIndex) => {
+  //   console.log(`matrix[${rowIndex}]: ${JSON.stringify(row)}`)
+  // })
+
+  const dlx = new dlxlib.Dlx()
+  const options = { numPrimaryColumns: 0 }
+  const solutions = dlx.solve(matrix, options)
+  console.dir(solutions)
 }
 
 main()
