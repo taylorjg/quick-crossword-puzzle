@@ -35,7 +35,6 @@ const enrichDownClues = (puzzle, gridAnalysis) =>
   }))
 
 const addPossibles = async (thesaurusService, clueDetailsCollection) => {
-  // return clueDetailsCollection
   const promises = clueDetailsCollection.map(async clueDetails => {
     const { clue, answerLength, answer } = clueDetails
     const possibles = await thesaurusService.getPossibles(clue, answerLength)
@@ -47,35 +46,9 @@ const addPossibles = async (thesaurusService, clueDetailsCollection) => {
   return Promise.all(promises)
 }
 
-// ...
-// .X.
-// .X.
-//
-// each grid square can be a or b or c
-//
-// abc
-// aXc
-// aXc
-//
-// 3 words each of which has 2 possibles (1 correct and 1 wrong):
-// 1a) abc (correct) or bbb (wrong)
-// 1d) aaa (correct) or bab (wrong)
-// 2d) ccc (correct) or aca (wrong)
-//
-// total columns: 6 (alphabet size * number of cross checking grid squares = 3 * 2)
-// total number of rows: sum of number of possibles for each word = 2 + 2 + 2
-//
-// 100 001 # 1a) abc
-// 010 010 # 1a) bbb
-// 011 000 # 1d) aaa
-// 101 000 # 1d) bab
-// 000 110 # 2d) ccc
-// 000 011 # 2d) aca
-
 const encodeLetter = (letter, isAcrossClue) => {
   const flags = Array(26).fill(false)
   const flagIndex = letter.charCodeAt(0) - 'a'.charCodeAt(0)
-  // console.log(`letter: ${letter}; flagIndex: ${flagIndex}; ${letter.charCodeAt(0)}; ${'a'.charCodeAt(0)}`)
   assert(flagIndex >= 0)
   assert(flagIndex < flags.length)
   flags[flagIndex] = true
@@ -133,13 +106,16 @@ const makeDlxMatrix = (crossCheckingGridSquares, acrossClueDetails, downClueDeta
 
 const main = async () => {
   const gridAnalysis = analyseGrid(SAMPLE_PUZZLE.GRID)
-  renderGrid(SAMPLE_PUZZLE, gridAnalysis)
   const acrossClueDetails = await addPossibles(MW, enrichAcrossClues(SAMPLE_PUZZLE, gridAnalysis))
   const downClueDetails = await addPossibles(MW, enrichDownClues(SAMPLE_PUZZLE, gridAnalysis))
+
+  renderGrid(SAMPLE_PUZZLE, gridAnalysis)
+
   // console.log()
   // console.dir(acrossClueDetails)
   // console.log()
   // console.dir(downClueDetails)
+
   const crossCheckingGridSquares = []
   for (const row of U.range(gridAnalysis.numRows)) {
     for (const col of U.range(gridAnalysis.numCols)) {
@@ -147,15 +123,19 @@ const main = async () => {
       const across = acrossClueDetails.find(hasGridSquare(gridSquare))
       const down = downClueDetails.find(hasGridSquare(gridSquare))
       if (across && down) {
-        const acrossIndex = across.gridSquares.findIndex(gs => isSameGridSquare(gridSquare, gs))
-        const downIndex = down.gridSquares.findIndex(gs => isSameGridSquare(gridSquare, gs))
-        crossCheckingGridSquares.push({
-          gridSquare,
-          acrossIndex,
-          downIndex,
-          acrossLetter: across.answer[acrossIndex],
-          downLetter: down.answer[downIndex]
-        })
+        const acrossPossiblesIncludesAnswer = across.possibles.includes(across.answer)
+        const downPossiblesIncludesAnswer = down.possibles.includes(down.answer)
+        if (acrossPossiblesIncludesAnswer && downPossiblesIncludesAnswer) {
+          const acrossIndex = across.gridSquares.findIndex(gs => isSameGridSquare(gridSquare, gs))
+          const downIndex = down.gridSquares.findIndex(gs => isSameGridSquare(gridSquare, gs))
+          crossCheckingGridSquares.push({
+            gridSquare,
+            acrossIndex,
+            downIndex,
+            acrossLetter: across.answer[acrossIndex],
+            downLetter: down.answer[downIndex]
+          })
+        }
       }
     }
   }
@@ -164,22 +144,9 @@ const main = async () => {
 
   const { matrix, map } = makeDlxMatrix(crossCheckingGridSquares, acrossClueDetails, downClueDetails)
   // console.dir(map)
-  // const matrix = [
-  //   [1, 0, 0, 0, 0, 1], // 0 <-
-  //   [0, 1, 0, 0, 1, 0], // 1
-  //   [0, 1, 1, 0, 0, 0], // 2 <-
-  //   [1, 0, 1, 0, 0, 0], // 3
-  //   [0, 0, 0, 1, 1, 0], // 4 <-
-  //   [0, 0, 0, 0, 1, 1]  // 5
-  // ]
-
-  // matrix.forEach((row, rowIndex) => {
-  //   console.log(`matrix[${rowIndex}]: ${JSON.stringify(row)}`)
-  // })
 
   const dlx = new dlxlib.Dlx()
-  const options = { numPrimaryColumns: 0 }
-  const solutions = dlx.solve(matrix, options)
+  const solutions = dlx.solve(matrix)
   console.dir(solutions)
 }
 
