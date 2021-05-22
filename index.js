@@ -104,6 +104,14 @@ const makeDlxMatrix = (crossCheckingGridSquares, acrossClueDetails, downClueDeta
   return { matrix, map }
 }
 
+const showSolution = (map, solution) => {
+  for (const rowIndex of solution) {
+    const { clueDetails, possibleIndex } = map.get(rowIndex)
+    // console.log('clueDetails:', clueDetails, 'possibleIndex:', possibleIndex)
+    console.log(`${clueDetails.clueNumber}${clueDetails.isAcrossClue ? 'A' : 'D'}: answer: ${clueDetails.answer}; chosen possible: ${clueDetails.possibles[possibleIndex]}`)
+  }
+}
+
 const main = async () => {
   const gridAnalysis = analyseGrid(SAMPLE_PUZZLE.GRID)
   const acrossClueDetails = await addPossibles(MW, enrichAcrossClues(SAMPLE_PUZZLE, gridAnalysis))
@@ -147,7 +155,8 @@ const main = async () => {
 
   const dlx = new dlxlib.Dlx()
   const solutions = dlx.solve(matrix)
-  console.dir(solutions)
+  // console.dir(solutions)
+  showSolution(map, solutions[0])
 }
 
 main()
